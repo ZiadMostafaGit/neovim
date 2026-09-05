@@ -7,7 +7,16 @@ return {
     opts = {
       appearance = { nerd_font_variant = "mono" },
       keymap = {
-        preset = "default", -- C-space open, C-n/C-p select, C-y accept, C-e hide
+        preset = "default", -- C-space open, C-e hide; C-n/C-p and C-y still work
+        -- Enter accepts, and falls back to a real newline when no menu is open.
+        -- Note: blink preselects the first item, so Enter while the menu IS open
+        -- accepts rather than inserting a newline. C-e dismisses it first.
+        ["<CR>"] = { "select_and_accept", "fallback" },
+        -- j/k to move through the menu, matching how you move everywhere else.
+        -- C-k overrides the preset's show_signature; the signature window still
+        -- appears on its own while you type arguments.
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
         -- Tab accepts a Copilot suggestion when one is showing, and otherwise
         -- behaves normally, so the two never fight over the key.
         ["<Tab>"] = {

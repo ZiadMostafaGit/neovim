@@ -85,12 +85,19 @@ Leader is `<Space>`. Press it and wait — which-key lists everything.
 ### Completion
 | Key | Action |
 |---|---|
+| `<CR>` | **Accept** |
+| `<C-j>` / `<C-k>` | **Next / previous item** |
+| `<C-y>` | Accept (also works) |
+| `<C-n>` / `<C-p>` | Next / previous item (also works) |
 | `<C-Space>` | Open menu |
-| `<C-n>` / `<C-p>` | Next / previous item |
-| `<C-y>` | Accept |
-| `<C-e>` | Dismiss |
+| `<C-e>` | Dismiss — press this first if you want a newline, not the completion |
+| `<C-b>` / `<C-f>` | Scroll the docs popup |
 | `<Tab>` | Accept Copilot suggestion, else jump to next snippet field |
 | `<M-]>` / `<M-[>` | Cycle Copilot suggestions |
+
+The first item is preselected, so `<CR>` accepts as soon as the menu is open.
+That is the tradeoff for Enter-to-accept: to insert a newline while the menu is
+showing, dismiss it with `<C-e>` first.
 
 ### Toggles
 | Key | Action |
