@@ -2,7 +2,9 @@
 -- anything more involved belongs in a tmux pane.
 local M = {}
 
-local out = "/tmp/nvim-run-out"
+-- Compiled binaries go in Neovim's cache dir; /tmp does not exist on Windows.
+local out = vim.fn.shellescape(vim.fs.joinpath(vim.fn.stdpath("cache"), "nvim-run-out")
+  .. (vim.fn.has("win32") == 1 and ".exe" or ""))
 
 -- Each entry returns the shell command for the given file.
 local commands = {

@@ -22,7 +22,7 @@ o.inccommand = "split" -- live preview of :s substitutions
 o.splitright = true
 o.splitbelow = true
 
--- Wayland clipboard (wl-copy is installed)
+-- System clipboard (wl-copy on Linux, win32yank on Windows)
 o.clipboard = "unnamedplus"
 
 -- UI
@@ -44,8 +44,11 @@ o.swapfile = false
 o.undofile = true -- undo history survives restarts; cheap and hard to regret
 
 -- Fish is not POSIX and breaks plugin subprocesses. Neovim uses bash internally;
--- :terminal and tmux still give you fish.
-o.shell = "/bin/bash"
+-- :terminal and tmux still give you fish. Windows has no /bin/bash, so keep the
+-- default cmd.exe there: plugins expect it.
+if vim.fn.has("win32") == 0 then
+  o.shell = "/bin/bash"
+end
 
 -- Diagnostics: full message on its own line, but only for the line under the cursor.
 vim.diagnostic.config({

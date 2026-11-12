@@ -131,3 +131,26 @@ showing, dismiss it with `<C-e>` first.
   `:terminal` is unaffected.
 - Add a database connection with `:DBUIAddConnection`, e.g.
   `postgresql://user:pass@localhost:5432/dbname`.
+
+## Competitive programming (Codeforces)
+
+Install the [Competitive Companion](https://github.com/jmerle/competitive-companion)
+browser extension (default port 27121 is already what Neovim listens on).
+
+1. `<leader>tc` — Neovim waits for a contest (`<leader>tp` for a single problem).
+2. On the Codeforces contest page, click the Competitive Companion icon.
+3. Files appear as `~/codeforces/<contest>/A.cpp, B.cpp, …` from `templates/cp.cpp`,
+   with samples in `tests/`.
+4. `<leader>tr` compiles (`g++ -std=c++23 -O2 -DLOCAL`) and diffs every sample.
+
+| Key | Action |
+|---|---|
+| `<leader>tc` / `<leader>tp` | Receive contest / problem from the browser |
+| `<leader>tP` / `<leader>tS` | Listen continuously / stop listening |
+| `<leader>tT` | Receive tests into the current file |
+| `<leader>tr` / `<leader>tR` | Compile & run all tests / run without recompiling |
+| `<leader>tu` | Reopen results window (`R` rerun, `d` diff, `q` close) |
+| `<leader>ta` / `te` / `td` | Add / edit / delete a testcase |
+| `<leader>tn` | New scratch solution in `~/cp/scratch` |
+| `<leader>tf` | Find a file under `~/codeforces` |
+| `<leader>r` | Run current file interactively in a terminal |

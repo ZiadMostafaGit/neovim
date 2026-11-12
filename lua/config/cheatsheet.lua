@@ -9,7 +9,7 @@ local groups = require("config.groups")
 -- Order sections appear in. Anything not listed is appended alphabetically.
 local ORDER = {
   "Find", "Git", "Code / LSP", "Diagnostics", "Search", "Buffer", "Window",
-  "Toggle", "REST client", "Session / quit", "Leader — other", "Global keys",
+  "Toggle", "Competitive", "REST client", "Session / quit", "Leader — other", "Global keys",
 }
 
 -- Ordered, so mode tags always read the same way. "v" is omitted deliberately:

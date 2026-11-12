@@ -7,6 +7,10 @@ M.override = nil
 
 local candidates = { ".venv", "venv", "env" }
 
+-- Windows venvs put the interpreter in Scripts\python.exe, not bin/python.
+local is_win = vim.fn.has("win32") == 1
+local venv_python = is_win and "/Scripts/python.exe" or "/bin/python"
+
 ---@param root string|nil project root; falls back to cwd
 ---@return string interpreter absolute path to a python executable
 function M.python_path(root)
@@ -15,16 +19,16 @@ function M.python_path(root)
   end
   -- An already-activated venv wins: it is what the user explicitly chose.
   if vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV ~= "" then
-    return vim.env.VIRTUAL_ENV .. "/bin/python"
+    return vim.env.VIRTUAL_ENV .. venv_python
   end
   root = root or vim.fn.getcwd()
   for _, dir in ipairs(candidates) do
-    local python = root .. "/" .. dir .. "/bin/python"
+    local python = root .. "/" .. dir .. venv_python
     if vim.fn.executable(python) == 1 then
       return python
     end
   end
-  return vim.fn.exepath("python3")
+  return vim.fn.exepath(is_win and "python" or "python3")
 end
 
 -- Pick a venv by hand for the projects that keep it somewhere unusual.
@@ -35,7 +39,7 @@ function M.select()
     if vim.fn.isdirectory(root) == 1 then
       local out = vim.fn.systemlist({
         "fd", "--hidden", "--no-ignore", "--type", "x", "--max-depth", "4",
-        "--full-path", "bin/python$", ".", root,
+        "--full-path", is_win and [[Scripts\\python\.exe$]] or "bin/python$", ".", root,
       })
       if vim.v.shell_error == 0 then
         vim.list_extend(found, out)

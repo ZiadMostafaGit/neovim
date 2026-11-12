@@ -2,7 +2,7 @@ return {
   -- Dashboard, notifications, smooth scrolling, and large-file handling in one plugin.
   {
     "folke/snacks.nvim",
-    priority = 900,
+    priority = 1000,
     lazy = false,
     opts = {
       bigfile = { enabled = true }, -- disable syntax/LSP on huge files instead of hanging

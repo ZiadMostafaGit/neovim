@@ -1,58 +1,25 @@
--- Your theme, carried over as-is. Only the LazyVim block was dropped (this config
--- does not use LazyVim); the colorscheme is applied directly instead.
+-- Tokyo Night, "night" variant (the darkest of its styles).
 return {
   {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000, -- load before everything else so no plugin renders unstyled
     opts = {
-      options = {
-        hide_end_of_buffer = true,
-        transparent = false,
-        terminal_colors = true,
-        dim_inactive = false,
-        styles = {
-          comments = "italic",
-          keywords = "italic",
-        },
-        darken = {
-          floats = true,
-          sidebars = {
-            enable = true,
-            list = {},
-          },
-        },
+      style = "night", -- storm | moon | night | day
+      transparent = false,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        sidebars = "dark",
+        floats = "dark",
       },
-      palettes = {
-        all = {
-          red = "#ff7b72",
-        },
-        github_dark_default = {
-          -- Push the background down to a really-dark near-black
-          bg0 = "#0d1117",
-          bg1 = "#010409",
-          bg2 = "#010409",
-          bg3 = "#010409",
-          bg4 = "#010409",
-        },
-      },
-      groups = {
-        all = {
-          Normal = { bg = "#010409" },
-          NormalFloat = { bg = "#0d1117" },
-          SignColumn = { bg = "#010409" },
-          LineNr = { bg = "#010409", fg = "#484f58" },
-          WinSeparator = { fg = "#30363d", bg = "none" },
-          FloatBorder = { bg = "#0d1117" },
-          Pmenu = { bg = "#0d1117" },
-          PmenuSel = { bg = "#21262d" },
-        },
-      },
+      dim_inactive = false,
+      lualine_bold = true,
     },
     config = function(_, opts)
-      require("github-theme").setup(opts)
-      vim.cmd.colorscheme("github_dark_default")
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
 }

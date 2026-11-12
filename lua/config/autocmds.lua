@@ -84,7 +84,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
     if #missing > 0 then
       vim.notify(
         "Missing system dependencies: " .. table.concat(missing, ", ") ..
-        "\nInstall with:  sudo pacman -S " .. table.concat(missing, " "),
+        "\nInstall with:  " .. (vim.fn.has("win32") == 1 and "scoop install " or "sudo pacman -S ")
+          .. table.concat(missing, " "),
         vim.log.levels.WARN,
         { title = "nvim setup" }
       )

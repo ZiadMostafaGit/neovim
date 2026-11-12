@@ -113,14 +113,14 @@ return {
 
   -- ci" da( ysiw) and friends.
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     event = "VeryLazy",
     opts = {},
   },
 
   -- Auto-close brackets and quotes.
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     event = "InsertEnter",
     opts = {},
   },

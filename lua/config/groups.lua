@@ -8,6 +8,7 @@ return {
   ["<leader>q"] = "Session / quit",
   ["<leader>R"] = "REST client",
   ["<leader>s"] = "Search",
+  ["<leader>t"] = "Competitive",
   ["<leader>u"] = "Toggle",
   ["<leader>w"] = "Window",
   ["<leader>x"] = "Diagnostics",
